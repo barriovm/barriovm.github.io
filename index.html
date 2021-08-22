@@ -179,7 +179,15 @@ $(document).ready (function () {
       var nombre = det.val ().FULL_NAME.split (", ");
       info.push ({id: det.val ().id, text: nombre [1] + " " + nombre [0]});
     });
-    $("#listado").select2 ({theme: "bootstrap-5", data: info});
+    $("#listado").select2 ({theme: "bootstrap-5", data: info, tags: true,
+      createTag: function (params) {
+        return {
+          id: Math.random ().toString ().replace (/\./, ""),
+          text: params.term,
+          newOption: true
+        }
+      }
+    });
   });
 
   $("#guardar").click (function () {
